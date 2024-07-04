@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Order Page </title>
+
+    <!-- fontawsome cdn link  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- css files  -->
+    <link rel="stylesheet" href="./assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./assets/css/mainStyle.min.css">
+</head>
+<body>
+    <main id="content__wrapper">
+        <section class="order__page_sec">
+            <div class="container text-center">
+              <div class="row">
+                <div class="col-8 mx-auto">
+                  <div class="order__box">
+                    <a href="#" class="logo">
+                        <img src="./assets/images/pran.png" alt="pran.png" />
+                    </a>
+                    <h2 class="heading">আপনার অর্ডারকৃত পণ্য নির্ধারণ করুন </h2>
+                    <div class="pd_unit_price_table">
+                      <figure class="product_demo">
+                        <img src="./assets/images/pran-mango-juice-can.png" alt="pran-mango-juice-can-250-ml.png" />
+                      </figure>
+                      <table class="unit_price_table">
+                        <tr class="pd_item_row" data-id="pd_item_01">
+                          <td>
+                            <div class="pd_unit">
+                              <input type="checkbox" id="input_01" name="input_01"/>
+                              <label for="input_01"> আমের জুস <span>(১ কেজি)</span> </label>
+                            </div>
+                          </td>
+
+                          <td>
+                            <div class="pd_pricing">
+                              Tk <span>70.00</span>
+                            </div>
+                          </td>
+
+                          <td>
+                            <div class="quantity">
+                              <input type="button" value="-" class="minus"/>
+                              <input type="number" value="0" min="0" class="input-box" />
+                              <input type="button" value="+" class="plus"/>
+                            </div>
+                          </td>
+                        </tr>
+
+                        <tr class="pd_item_row" data-id="pd_item_02">
+                          <td>
+                            <div class="pd_unit">
+                              <input type="checkbox" id="input_02" name="input_02"/>
+                              <label for="input_02"> আমের জুস <span>(২ কেজি)</span> </label>
+                            </div>
+                          </td>
+
+                          <td>
+                            <div class="pd_pricing">
+                              Tk <span>80.00</span>
+                            </div>
+                          </td>
+
+                          <td>
+                            <div class="quantity">
+                              <input type="button" value="-" class="minus"/>
+                              <input type="number" value="0" min="0" class="input-box" />
+                              <input type="button" value="+" class="plus"/>
+                            </div>
+                          </td>
+                        </tr>
+
+                        <tr class="pd_item_row" data-id="pd_item_03">
+                          <td>
+                            <div class="pd_unit">
+                              <input type="checkbox" id="input_03" name="input_03"/>
+                              <label for="input_03"> আমের জুস <span>(৩ কেজি)</span> </label>
+                            </div>
+                          </td>
+
+                          <td>
+                            <div class="pd_pricing">
+                              Tk <span>130.00</span>
+                            </div>
+                          </td>
+
+                          <td>
+                            <div class="quantity">
+                              <input type="button" value="-" class="minus"/>
+                              <input type="number" value="0" min="0" class="input-box" />
+                              <input type="button" value="+" class="plus"/>
+                            </div>
+                          </td>
+                        </tr>
+
+                        <tr class="pd_item_row" data-id="pd_item_04">
+                          <td>
+                            <div class="pd_unit">
+                              <input type="checkbox" id="input_04" name="input_04"/>
+                              <label for="input_04"> আমের জুস <span>(৪ কেজি)</span> </label>
+                            </div>
+                          </td>
+
+                          <td>
+                            <div class="pd_pricing">
+                              Tk <span>70.00</span>
+                            </div>
+                          </td>
+
+                          <td>
+                            <div class="quantity">
+                              <input type="button" value="-" class="minus"/>
+                              <input type="number" value="0" min="0" class="input-box" />
+                              <input type="button" value="+" class="plus"/>
+                            </div>
+                          </td>
+
+                        </tr>
+                      </table>
+
+                    </div>
+
+                    <div class="shipping__wrapper">
+                      <h3 class="heading_h3 text-left"> শিপিং মেথড </h3>
+                      <table class="unit_price_table shipping__table">
+                        <tr>
+                          <td>
+                            <div class="pd_unit">
+                              <input type="checkbox" id="input_05" name="input_05">
+                              <label for="input_05"> ঢাকা সিটির ভিতরে </label>
+                            </div>
+                          </td>
+
+                          <td>
+                            <div class="pd_pricing">
+                              Tk <span>70.00</span>
+                            </div>
+                          </td>
+                        </tr>
+
+                        <tr>
+                          <td>
+                            <div class="pd_unit">
+                              <input type="checkbox" id="input_06" name="input_06">
+                              <label for="input_06"> চট্টগ্রাম সিটির ভিতরে </label>
+                            </div>
+                          </td>
+
+                          <td>
+                            <div class="pd_pricing">
+                              Tk <span>80.00</span>
+                            </div>
+                          </td>
+                        </tr>
+
+                        <tr>
+                          <td>
+                            <div class="pd_unit">
+                              <input type="checkbox" id="input_07" name="input_07">
+                              <label for="input_07"> ঢাকা ও চট্টগ্রাম সিটির বাহিরে  </label>
+                            </div>
+                          </td>
+
+                          <td>
+                            <div class="pd_pricing">
+                              Tk <span>130.00</span>
+                            </div>
+                          </td>
+                        </tr>
+                      </table>
+
+                      <form action="/action-page.php" method="post" class="coupn__form" >
+                        <input type="text" name="coupn_code" id="coupn_code" placeholder="কুপন কোড">
+                        <input type="submit" value="এপ্লাই">
+                      </form>
+
+                    </div>
+
+                    <div class="order_info_details">
+                      <div class="pd_order_price">
+                        <div class="pd_item">
+                          <figure class="product_demo">
+                            <img src="./assets/images/pran-mango-juice-can.png" alt="pran-mango-juice-can-250-ml.png" />
+                          </figure>
+                          <p> আমের জুস <span>(৫০০ গ্রাম)</span> </p>
+                        </div>
+                        <strong class="pd_price">
+                          Tk <span>1,800.00</span>
+                        </strong>
+                      </div>
+                      <div class="pricing_details">
+                        <p class="net_price">সাব টোটাল <strong>Tk <span>1,800.00</span></strong></p>
+                        <p class="delivery_charge">ডেলিভারি চার্জ <strong>Tk <span>70.00</span></strong></p>
+                        <p class="total_price">সর্বমোট<strong>Tk <span>1,870.00</span></strong></p>
+                      </div>
+                    </div>
+                    <div class="order_note_box">
+                      <label for="order_note">
+                        Order note
+                      </label>
+                      <input type="text" name="order_note" placeholder="Order note">
+                    </div>
+
+                    <div class="delivary_order_form">
+                      <h2>ক্যাশ অন ডেলিভারিতে <br> অর্ডার করতে আপনার তথ্য দিন </h2>
+                      <form action="/index.php" method="post">
+                        <div class="index_box">
+                          <label for="fullName">আপনার নাম  <span>*</span></label>
+                          <div class="input_item">
+                            <span><i class="fa-solid fa-user"></i></span>
+                            <input type="text" name="poneNumber" id="poneNumber" placeholder="">
+                           </div>
+                        </div>
+
+                        <div class="index_box">
+                          <label for="poneNumber">আপনার নাম্বার <span>*</span></label>
+                         <div class="input_item">
+                          <span><i class="fa-solid fa-phone"></i></span>
+                          <input type="number" name="poneNumber" id="poneNumber" placeholder="">
+                         </div>
+                        </div>
+
+                        <div class="index_box">
+                          <label for="address">এড্রেস <span>*</span> </label>
+                          <div class="input_item">
+                            <span><i class="fa-solid fa-location-dot"></i></span>
+                            <input type="text" name="address" id="address" placeholder="">
+                           </div>
+                        </div>
+                        <input type="submit" value="আপনার অর্ডার কনফার্ম করতে ক্লিক করুন" class="btn submit_btn">
+                        <p class="mgs_info">উপরের বাটনে ক্লিক করলে আপনার অর্ডারটি সাথে সাথে কনফার্ম হয়ে যাবে !
+
+                        </p>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- js files  -->
+     <script src="./assets/js/leatest.js"></script>
+</body>
+</html>

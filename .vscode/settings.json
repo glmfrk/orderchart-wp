@@ -1,0 +1,99 @@
+{
+  "files.exclude": {
+    "**/.gradle": true,
+    "**/.idea": true,
+    "**/.next": true,
+    "**/android": true,
+    "**/build": true,
+    "**/ios": true,
+    "**/node_modules": true
+  },
+  "editor.renderLineHighlight": "gutter",
+  "editor.dragAndDrop": false,
+  "editor.occurrencesHighlight": "off",
+  "editor.detectIndentation": false,
+  "editor.smoothScrolling": true,
+  "editor.renderWhitespace": "none",
+  "editor.multiCursorModifier": "ctrlCmd",
+  "editor.colorDecorators": false,
+  "editor.matchBrackets": "always",
+  "editor.tabSize": 2,
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.wordWrap": "wordWrapColumn",
+  "files.trimTrailingWhitespace": true,
+  "scss.lint.emptyRules": "ignore",
+  "css.lint.emptyRules": "ignore",
+  "html.autoClosingTags": false,
+  "javascript.autoClosingTags": false,
+  "typescript.autoClosingTags": false,
+  "emmet.includeLanguages": {
+    "javascript": "html"
+  },
+  "[html]": {
+    "editor.defaultFormatter": "HookyQR.beautify",
+  },
+  "[css]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+  },
+  "[scss]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+  },
+  "[php]": {
+    "editor.defaultFormatter": "kokororin.vscode-phpfmt"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "prettier.semi": true,
+  "prettier.singleQuote": false,
+  // phpfmt
+  "phpfmt.psr2": false,
+  "phpfmt.indent_with_space": 2, // 4 for pure php, 2 for php with html, css, js
+  "phpfmt.exclude": [
+    "AllmanStyleBraces",
+  ],
+  "phpfmt.passes": [
+    "AlignDoubleArrow",
+    "AlignEquals",
+    "AlignDoubleSlashComments",
+    "AlignPHPCode",
+    "AutoSemicolon",
+    "NewLineBeforeReturn",
+  ],
+  // beautify
+  "beautify.config": {
+    "indent_size": 2,
+    "indent_char": " ",
+    "html": {
+      "indent_inner_html": false,
+      "preserve_newlines": true
+    }
+  },
+  "beautify.language": {
+    "css": [
+      "css",
+      "scss"
+    ],
+    "html": [
+      "htm",
+      "html",
+      "php",
+      "blade",
+    ]
+  },
+  // highlight-matching-tag
+  "highlight-matching-tag.highlightSelfClosing": true,
+  // others
+  "security.workspace.trust.untrustedFiles": "open",
+  "editor.minimap.enabled": false,
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "terminal.integrated.defaultProfile.windows": "Git Bash",
+  "diffEditor.ignoreTrimWhitespace": false,
+  "[python]": {
+    "editor.formatOnType": true
+  },
+}
