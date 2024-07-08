@@ -1,0 +1,56 @@
+// Update Table Styles
+.product__table {
+  padding: 20px 10px;
+  margin: 20px 0;
+  .product__table_row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 10px 0px;
+  }
+}
+
+.single_item {
+  display: inline-flex;
+  align-items: center;
+  gap: 20px;
+  flex-basis: 45%;
+  .product_demo {
+    width: 24px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .item_left {
+    display: flex;
+    align-items: center;
+  }
+  .item_right {
+    gap: 0;
+  }
+  span {
+    font-weight: 600;
+  }
+}
+.pd_pricing {
+  flex: 1;
+  text-align: left;
+  padding: 0px 10px;
+  font-weight: 600;
+}
+.quantity {
+  width: 120px;
+  display: flex;
+  align-items: center;
+  input[type="button"] {
+    flex-basis: 30px;
+    display: inline-block;
+    font-size: 24px;
+    font-weight: 700;
+  }
+  input[type="number"] {
+    width: 60px;
+    display: inline-block;
+    text-align: center;
+  }
+}
