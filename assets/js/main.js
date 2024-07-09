@@ -21,78 +21,79 @@ const orderNote = document.querySelector('input[name="orderNote"]');
 
 const eventHandler = function () {
   minusButtons.forEach((element, index) => {
-    element.addEventListener("click", (event) => {
+    element.addEventListener("click", function (event) {
       event.preventDefault();
+
       const inputBox = inputBoxes[index];
-      const currentValue = parseInt(inputBox.value);
-      inputBox.value = isNaN(currentValue) ? 0 : Math.max(currentValue - 1, 0);
-      const itemId = inputBox.closest(".product__table_row");
+      let quantity = parseInt(inputBox.value);
+      inputBox.value = isNaN(quantity) ? 0 : Math.max(quantity - 1, 0);
 
       const checkbox = checkBoxes[index];
-      checkbox.checked = true;
-      handleCheckboxChange(checkbox);
-      updateItemQuantity(itemId, parseInt(inputBox.value));
+      const itemRow = inputBox.closest(".product__table_row");
+
+      handleCheckboxChange(checkbox, itemRow);
+      updateItemQuantity(itemRow, parseInt(inputBox.value));
     });
   });
 
   inputBoxes.forEach((element, index) => {
-    if (element.type === "number") {
-      this.addEventListener("keyup", (event) => {
-        event.preventDefault();
-        const quantity = parseInt(event.target.value);
-        const itemId = element.closest(".product__table_row");
+    element.addEventListener("keyup", function (event) {
+      event.preventDefault();
 
-        const checkbox = checkBoxes[index];
-        checkbox.checked = true;
-        handleCheckboxChange(checkbox);
-        updateItemQuantity(itemId, quantity);
-      });
-    }
+      const checkbox = checkBoxes[index];
+      const quantity = parseInt(this.value);
+      const itemRow = this.closest(".product__table_row");
+
+      handleCheckboxChange(checkbox, itemRow);
+      updateItemQuantity(itemRow, quantity);
+    });
   });
 
   plusButtons.forEach((element, index) => {
     element.addEventListener("click", (event) => {
       event.preventDefault();
+
       const inputBox = inputBoxes[index];
-      const currentValue = parseInt(inputBox.value);
-      inputBox.value = isNaN(currentValue) ? 0 : Math.max(currentValue + 1, 0);
-      const itemId = inputBox.closest(".product__table_row");
+      const quantity = parseInt(inputBox.value);
+      inputBox.value = isNaN(quantity) ? 0 : Math.max(quantity + 1, 0);
 
       const checkbox = checkBoxes[index];
-      checkbox.checked = true;
-      handleCheckboxChange(checkbox);
-      updateItemQuantity(itemId, parseInt(inputBox.value));
+      const itemRow = inputBox.closest(".product__table_row");
+
+      handleCheckboxChange(checkbox, itemRow);
+      updateItemQuantity(itemRow, parseInt(inputBox.value));
     });
   });
 
-  checkBoxes.forEach((element) => {
+  checkBoxes.forEach((element, index) => {
     element.addEventListener("change", function (event) {
-      handleCheckboxChange(this);
+      event.preventDefault();
+
+      const inputBox = inputBoxes[index];
+      const itemRow = inputBox.closest(".product__table_row");
+
+      handleCheckboxChange(this, itemRow);
+      updateItemQuantity(itemRow, parseInt(inputBox.value));
     });
   });
   radioBoxes.forEach((element) => {
     element.addEventListener("change", function (event) {
+      event.preventDefault();
       handleRadioInput(this);
     });
   });
 };
 eventHandler();
 
-function handleCheckboxChange(element) {
-  const tableRow = element.closest(".product__table_row");
-  const itemId = tableRow.getAttribute("data-id");
-
-  const quantity = parseInt(tableRow.querySelector(".input-box").value);
-  const price = parseInt(
-    tableRow.querySelector(".pd_pricing span").textContent
-  );
+function handleCheckboxChange(element, item) {
+  const quantity = parseInt(item.querySelector(".input-box").value);
+  const price = parseInt(item.querySelector(".pd_pricing span").textContent);
   let itemName = element.nextElementSibling.textContent;
-  const itemImage = tableRow
-    .querySelector(".product_demo img")
-    .getAttribute("src");
+  const itemImage = item.querySelector("img").getAttribute("src");
+  console.log(itemImage);
 
   const itemData = {
-    id: itemId,
+    id: item,
     categoryId: "",
     inventoryId: "",
     quantity: quantity,
@@ -107,6 +108,7 @@ function handleCheckboxChange(element) {
   } else {
     initalObj.items = initalObj.items.filter((i) => i.id !== itemId);
   }
+  console.log(initalObj);
 }
 function handleRadioInput(element) {
   const itemRow = element.closest(".shifting_table_row");
@@ -121,6 +123,8 @@ function updateItemQuantity(element, quantity) {
   if (item) {
     item.quantity === quantity;
   }
+  const checkbox = element.querySelector('input[type="checkbox"]');
+  quantity === 0 ? (checkbox.checked = false) : (checkbox.checked = true);
   updateTotals();
 }
 

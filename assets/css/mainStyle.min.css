@@ -225,6 +225,7 @@ form.coupn__form input#coupn_code {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding: 5px 0px;
   margin: 10px 0px;
 }
 
@@ -232,10 +233,11 @@ form.coupn__form input#coupn_code {
   display: inline-flex;
   align-items: center;
   gap: 20px;
-  flex-basis: 45%;
+  flex-basis: 60%;
 }
 .single_item .product_demo {
   width: 24px;
+  width: 32px;
   display: inline-flex;
   justify-content: center;
   align-items: center;
@@ -243,9 +245,6 @@ form.coupn__form input#coupn_code {
 .single_item .item_left {
   display: flex;
   align-items: center;
-}
-.single_item .item_right {
-  gap: 0;
 }
 .single_item span {
   font-weight: 600;
@@ -273,6 +272,10 @@ form.coupn__form input#coupn_code {
   width: 60px;
   display: inline-block;
   text-align: center;
+}
+
+.single_item.item_right {
+  flex: 1;
 }
 
 .shifting_table_wrapper {

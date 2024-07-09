@@ -6,6 +6,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    padding: 5px 0px;
     margin: 10px 0px;
   }
 }
@@ -14,9 +15,10 @@
   display: inline-flex;
   align-items: center;
   gap: 20px;
-  flex-basis: 45%;
+  flex-basis: 60%;
   .product_demo {
     width: 24px;
+    width: 32px;
     display: inline-flex;
     justify-content: center;
     align-items: center;
@@ -24,9 +26,6 @@
   .item_left {
     display: flex;
     align-items: center;
-  }
-  .item_right {
-    gap: 0;
   }
   span {
     font-weight: 600;
@@ -53,4 +52,7 @@
     display: inline-block;
     text-align: center;
   }
+}
+.single_item.item_right {
+  flex: 1;
 }
