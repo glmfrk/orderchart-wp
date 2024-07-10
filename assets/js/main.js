@@ -1,4 +1,7 @@
-const initalObj = {
+/**********
+ * Initial State Object
+ *********/
+const initialObj = {
   items: [],
   shippingInfo: {},
   shippingCharge: 0,
@@ -7,175 +10,252 @@ const initalObj = {
   orderNote: "",
 };
 
+/*************
+ * All importent dom elements selected
+ ************/
 const checkBoxes = document.querySelectorAll('input[type="checkbox"]');
 const radioBoxes = document.querySelectorAll('input[type="radio"]');
 const inputBoxes = document.querySelectorAll(".input-box");
 const minusButtons = document.querySelectorAll(".minus");
 const plusButtons = document.querySelectorAll(".plus");
-const totalPrice = document.querySelectorAll(".net_price span");
-const deliveryCost = document.querySelector(".delivery_charge");
-const grandTotal = document.querySelector(".total_price span");
-const pdItemImage = document.querySelector(".product_demo img");
-const pdItem = document.querySelector(".pd_item p");
 const orderNote = document.querySelector('input[name="orderNote"]');
 
-const eventHandler = function () {
-  minusButtons.forEach((element, index) => {
-    element.addEventListener("click", function (event) {
-      event.preventDefault();
-
-      const inputBox = inputBoxes[index];
-      let quantity = parseInt(inputBox.value);
-      inputBox.value = isNaN(quantity) ? 0 : Math.max(quantity - 1, 0);
-
-      const checkbox = checkBoxes[index];
-      const itemRow = inputBox.closest(".product__table_row");
-
-      handleCheckboxChange(checkbox, itemRow);
-      updateItemQuantity(itemRow, parseInt(inputBox.value));
-    });
-  });
-
-  inputBoxes.forEach((element, index) => {
-    element.addEventListener("keyup", function (event) {
-      event.preventDefault();
-
-      const checkbox = checkBoxes[index];
-      const quantity = parseInt(this.value);
+document.addEventListener("DOMContentLoaded", function () {
+  const handleInputChange = (item) => {
+    item.addEventListener("keyup", function () {
       const itemRow = this.closest(".product__table_row");
+      const quantity = parseInt(this.value);
+      const checkbox = itemRow.querySelector('input[type="checkbox"]');
 
-      handleCheckboxChange(checkbox, itemRow);
-      updateItemQuantity(itemRow, quantity);
+      if (!isNaN(quantity)) {
+        checkbox.checked = true;
+        initialObj.items = initialObj.items.filter(
+          (i) => i.id !== itemRow.getAttribute("data-id")
+        );
+        initialObj.items.push(updateItemData(itemRow, quantity));
+      } else {
+        checkbox.checked = false;
+        initialObj.items = initialObj.items.filter(
+          (i) => i.id !== itemRow.getAttribute("data-id")
+        );
+      }
+
+      updateTotals();
     });
-  });
-
-  plusButtons.forEach((element, index) => {
-    element.addEventListener("click", (event) => {
-      event.preventDefault();
-
-      const inputBox = inputBoxes[index];
-      const quantity = parseInt(inputBox.value);
-      inputBox.value = isNaN(quantity) ? 0 : Math.max(quantity + 1, 0);
-
-      const checkbox = checkBoxes[index];
-      const itemRow = inputBox.closest(".product__table_row");
-
-      handleCheckboxChange(checkbox, itemRow);
-      updateItemQuantity(itemRow, parseInt(inputBox.value));
-    });
-  });
-
-  checkBoxes.forEach((element, index) => {
-    element.addEventListener("change", function (event) {
-      event.preventDefault();
-
-      const inputBox = inputBoxes[index];
-      const itemRow = inputBox.closest(".product__table_row");
-
-      handleCheckboxChange(this, itemRow);
-      updateItemQuantity(itemRow, parseInt(inputBox.value));
-    });
-  });
-  radioBoxes.forEach((element) => {
-    element.addEventListener("change", function (event) {
-      event.preventDefault();
-      handleRadioInput(this);
-    });
-  });
-};
-eventHandler();
-
-function handleCheckboxChange(element, item) {
-  const quantity = parseInt(item.querySelector(".input-box").value);
-  const price = parseInt(item.querySelector(".pd_pricing span").textContent);
-  let itemName = element.nextElementSibling.textContent;
-  const itemImage = item.querySelector("img").getAttribute("src");
-  console.log(itemImage);
-
-  const itemData = {
-    id: item,
-    categoryId: "",
-    inventoryId: "",
-    quantity: quantity,
-    price: price,
-    title: itemName,
-    image: itemImage,
   };
 
-  if (element.checked) {
-    initalObj.items = initalObj.items.filter((i) => i.id !== itemId);
-    initalObj.items.push(itemData);
-  } else {
-    initalObj.items = initalObj.items.filter((i) => i.id !== itemId);
-  }
-  console.log(initalObj);
-}
-function handleRadioInput(element) {
-  const itemRow = element.closest(".shifting_table_row");
-  const selectedCharge = itemRow.querySelector(".shiftingCost").textContent;
+  const handleCheckboxChange = (item) => {
+    item.addEventListener("change", function () {
+      const itemRow = this.closest(".product__table_row");
+      const quantityInput = itemRow.querySelector('input[type="number"]');
+      let quantity = parseInt(quantityInput.value);
 
-  initalObj.shippingCharge = parseInt(selectedCharge);
-  updateTotals();
-}
-function updateItemQuantity(element, quantity) {
-  const itemId = element.getAttribute("data-id");
-  const item = initalObj.items.find((i) => i.id === itemId);
-  if (item) {
-    item.quantity === quantity;
-  }
-  const checkbox = element.querySelector('input[type="checkbox"]');
-  quantity === 0 ? (checkbox.checked = false) : (checkbox.checked = true);
-  updateTotals();
-}
+      if (this.checked) {
+        quantity = isNaN(quantity) || quantity < 1 ? 1 : quantity;
+        quantityInput.value = quantity;
+        initialObj.items = initialObj.items.filter(
+          (i) => i.id !== itemRow.getAttribute("data-id")
+        );
+        initialObj.items.push(updateItemData(itemRow, quantity));
+      } else {
+        initialObj.items = initialObj.items.filter(
+          (i) => i.id !== itemRow.getAttribute("data-id")
+        );
+        quantityInput.value = 0;
+      }
+
+      updateTotals();
+    });
+  };
+
+  const handleDecrementButton = (item) => {
+    item.addEventListener("click", function () {
+      const itemRow = this.closest(".product__table_row");
+      const quantityInput = itemRow.querySelector('input[type="number"]');
+      let quantity = parseInt(quantityInput.value);
+
+      quantity = isNaN(quantity) || quantity <= 1 ? 0 : quantity - 1;
+      quantityInput.value = quantity;
+      itemRow.querySelector('input[type="checkbox"]').checked = quantity > 0;
+
+      initialObj.items = initialObj.items.filter(
+        (i) => i.id !== itemRow.getAttribute("data-id")
+      );
+      if (quantity > 0)
+        initialObj.items.push(updateItemData(itemRow, quantity));
+
+      updateTotals();
+    });
+  };
+
+  const handleIncrementButton = (item) => {
+    item.addEventListener("click", function () {
+      const itemRow = this.closest(".product__table_row");
+      const quantityInput = itemRow.querySelector('input[type="number"]');
+      let quantity = parseInt(quantityInput.value);
+
+      quantity = isNaN(quantity) ? 1 : quantity + 1;
+      quantityInput.value = quantity;
+      itemRow.querySelector('input[type="checkbox"]').checked = true;
+
+      initialObj.items = initialObj.items.filter(
+        (i) => i.id !== itemRow.getAttribute("data-id")
+      );
+      initialObj.items.push(updateItemData(itemRow, quantity));
+
+      updateTotals();
+    });
+  };
+
+  const handleShippingMethod = (item) => {
+    item.addEventListener("change", function () {
+      const itemRow = this.closest(".shifting_table_row");
+      const shippingCost = parseInt(
+        itemRow.querySelector(".shiftingCost").textContent
+      );
+      initialObj.shippingCharge = shippingCost;
+      updateTotals();
+    });
+  };
+
+  const attachEventHandlers = (inputsArray) => {
+    inputsArray.forEach((elements) => {
+      elements.forEach((element) => {
+        if (element.type === "number") handleInputChange(element);
+        if (element.type === "checkbox") handleCheckboxChange(element);
+        if (element.type === "radio") handleShippingMethod(element);
+        if (element.classList.contains("minus")) handleDecrementButton(element);
+        if (element.classList.contains("plus")) handleIncrementButton(element);
+      });
+    });
+  };
+
+  attachEventHandlers([
+    checkBoxes,
+    inputBoxes,
+    minusButtons,
+    plusButtons,
+    radioBoxes,
+  ]);
+});
+
+// Relevent all callback functions define here
+const updateItemData = (itemRow, quantity) => {
+  const itemId = itemRow.getAttribute("data-id");
+  const price = parseInt(itemRow.querySelector(".pd_pricing span").textContent);
+  const title = itemRow.querySelector("label").textContent; // Replace with actual title
+  const image = itemRow.querySelector("img").src; // Replace with actual image URL
+  return { id: itemId, title, image, quantity, price };
+};
 
 const updateTotals = () => {
-  initalObj.subTotal = initalObj.items.reduce(
+  initialObj.subTotal = initialObj.items.reduce(
     (total, item) => total + item.price * item.quantity,
     0
   );
-  const grandTotal = initalObj.subTotal + initalObj.shippingCharge;
-  initalObj.grandTotal = grandTotal;
-  updateViewData(grandTotal);
+  initialObj.grandTotal = initialObj.subTotal + initialObj.shippingCharge;
+  updateViewData();
 };
 
-const updateViewData = (value = null) => {
-  totalPrice.forEach((element) => {
-    element.textContent = initalObj.subTotal;
-  });
-
-  initalObj.items.forEach((item) => {
-    pdItemImage.src = item.image;
-    pdItem.innerHTML = item.title;
-  });
-
-  deliveryCost.textContent = initalObj.shippingCharge;
-  grandTotal.textContent = value;
+const updateViewData = () => {
+  document.querySelector(".net_price span").textContent = initialObj.subTotal;
+  document.querySelector(".delivery_charge").textContent =
+    initialObj.shippingCharge;
+  document.querySelector(".total_price span").textContent =
+    initialObj.grandTotal;
 };
 
 // Order Confirm Form Validation Here
 
-document.forms[1].addEventListener("submit", handleFormValidation);
+document.forms[0].addEventListener("submit", handleFormValidation);
 
 function handleFormValidation(event) {
   event.preventDefault();
 
-  let orderNoteMgs = orderNote.value.replace(/\s+/g, " ").trim();
   let userName = event.target.userName.value.replace(/\s+/g, " ").trim();
   let userPhone = event.target.userPhone.value.replace(/\s+/g, " ").trim();
+  let userEmail = event.target.userEmail.value.replace(/\s+/g, " ").trim();
   let userAddress = event.target.userAddress.value.replace(/\s+/g, " ").trim();
 
-  if (userName === "" || userPhone === "" || userAddress === "") {
+  if (
+    orderNote.value === "" ||
+    userName === "" ||
+    userPhone === "" ||
+    userEmail === "" ||
+    userAddress === ""
+  ) {
     alert("All fields are required.");
     return false;
   } else {
-    initalObj.shippingInfo = {
+    initialObj.orderNote = orderNote.value;
+    initialObj.shippingInfo = {
       userName,
       userPhone,
+      userEmail,
       userAddress,
     };
   }
-  initalObj.orderNote = orderNoteMgs;
+
   // Send data to email
-  const mailtoLink = `mailto:golamfaruk204@gmail.com?subject=Shipping%20Information%20Details&body=Name: ${userName}%0APhone: ${userPhone}%0AAddress: ${userAddress}%0AOrder Note: ${orderNoteMgs}`;
+  const mailtoLink = `mailto:golamfaruk204@gmail.com?subject=Shipping%20Information%20Details&body=Name: ${userName}%0APhone: ${userPhone}%0AAddress: ${userAddress}%0AOrder Note: ${initialObj.orderNote}%0ASubTotal Price: ${initialObj.subTotal}%0AShipping Cost: ${initialObj.shippingCharge}%0AGrand Total: ${initialObj.grandTotal}`;
   window.location.href = mailtoLink;
+
+  // generateInvoice();
+  // sendEmail();
+  console.log(initialObj);
+}
+
+// Generate Invoice
+// function generateInvoice() {
+//   const doc = new jsPDF();
+//   doc.text("Order Invoice", 20, 20);
+//   doc.text(`Name: ${initialObj.shippingInfo.userName}`, 20, 30);
+//   doc.text(`Phone: ${initialObj.shippingInfo.userPhone}`, 20, 40);
+//   doc.text(`Address: ${initialObj.shippingInfo.userAddress}`, 20, 50);
+//   doc.text(`Order Note: ${initialObj.orderNote}`, 20, 60);
+
+//   let y = 70;
+//   initialObj.items.forEach((item) => {
+//     doc.text(
+//       `Item: ${item.title}, Quantity: ${item.quantity}, Price: ${item.price}`,
+//       20,
+//       y
+//     );
+//     y += 10;
+//   });
+
+//   doc.text(`Subtotal: ${initialObj.subTotal}`, 20, y + 10);
+//   doc.text(`Shipping: ${initialObj.shippingCharge}`, 20, y + 20);
+//   doc.text(`Grand Total: ${initialObj.grandTotal}`, 20, y + 30);
+
+//   doc.save("invoice.pdf");
+// }
+
+// Send Email
+function sendEmail() {
+  // Note: This function requires a backend service to send the email
+  fetch("https://your-backend-service.com/send-email", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      to: "golamfaruk204@gmail.com",
+      subject: "Order Invoice",
+      body: "Please find attached the order invoice.",
+      attachments: [
+        {
+          filename: "invoice.pdf",
+          content: btoa(generateInvoice().output()),
+          encoding: "base64",
+        },
+      ],
+    }),
+  }).then((response) => {
+    if (response.ok) {
+      alert("Invoice sent successfully!");
+    } else {
+      alert("Failed to send the invoice.");
+    }
+  });
 }
