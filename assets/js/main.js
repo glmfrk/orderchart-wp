@@ -19,6 +19,7 @@ const inputBoxes = document.querySelectorAll(".input-box");
 const minusButtons = document.querySelectorAll(".minus");
 const plusButtons = document.querySelectorAll(".plus");
 const orderNote = document.querySelector('input[name="orderNote"]');
+const removeItem = document.querySelectorAll(".close_icon");
 
 document.addEventListener("DOMContentLoaded", function () {
   const handleInputChange = (item) => {
@@ -61,7 +62,7 @@ document.addEventListener("DOMContentLoaded", function () {
         initialObj.items = initialObj.items.filter(
           (i) => i.id !== itemRow.getAttribute("data-id")
         );
-        quantityInput.value = 0;
+        // quantityInput.value = 0;
       }
 
       updateTotals();
@@ -118,6 +119,34 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   };
 
+  // Function to handle removing product from product list and updating initialObj state
+  const handleCloseItem = (item) => {
+    item.addEventListener("click", function (event) {
+      event.preventDefault();
+      const itemRow = this.closest(".product__table_row");
+      const itemId = itemRow.getAttribute("data-id");
+
+      // Find the item in the initialObj.items array
+      const itemIndex = initialObj.items.findIndex((i) => i.id === itemId);
+
+      if (itemIndex !== -1) {
+        const item = initialObj.items[itemIndex];
+        initialObj.items.splice(itemIndex, 1);
+
+        // Update totals
+        initialObj.subTotal -= item.price;
+
+        initialObj.shippingCharge -= item.shippingCost;
+        itemRow.remove();
+
+        initialObj.grandTotal = initialObj.subTotal + initialObj.shippingCharge;
+      } else {
+        console.log("Item not found:", itemId);
+      }
+
+      updateTotals();
+    });
+  };
   const attachEventHandlers = (inputsArray) => {
     inputsArray.forEach((elements) => {
       elements.forEach((element) => {
@@ -126,6 +155,7 @@ document.addEventListener("DOMContentLoaded", function () {
         if (element.type === "radio") handleShippingMethod(element);
         if (element.classList.contains("minus")) handleDecrementButton(element);
         if (element.classList.contains("plus")) handleIncrementButton(element);
+        if (element.classList.contains("close_icon")) handleCloseItem(element);
       });
     });
   };
@@ -136,6 +166,7 @@ document.addEventListener("DOMContentLoaded", function () {
     minusButtons,
     plusButtons,
     radioBoxes,
+    removeItem,
   ]);
 });
 
@@ -163,11 +194,14 @@ const updateViewData = () => {
     initialObj.shippingCharge;
   document.querySelector(".total_price span").textContent =
     initialObj.grandTotal;
+  initialObj.orderNote = orderNote.value;
 };
 
 // Order Confirm Form Validation Here
 
-document.forms[0].addEventListener("submit", handleFormValidation);
+document
+  .getElementById("userInfoForm")
+  .addEventListener("submit", handleFormValidation);
 
 function handleFormValidation(event) {
   event.preventDefault();
@@ -177,17 +211,10 @@ function handleFormValidation(event) {
   let userEmail = event.target.userEmail.value.replace(/\s+/g, " ").trim();
   let userAddress = event.target.userAddress.value.replace(/\s+/g, " ").trim();
 
-  if (
-    orderNote.value === "" ||
-    userName === "" ||
-    userPhone === "" ||
-    userEmail === "" ||
-    userAddress === ""
-  ) {
+  if (userName === "" || userPhone === "" || userAddress === "") {
     alert("All fields are required.");
     return false;
   } else {
-    initialObj.orderNote = orderNote.value;
     initialObj.shippingInfo = {
       userName,
       userPhone,
@@ -197,65 +224,8 @@ function handleFormValidation(event) {
   }
 
   // Send data to email
-  const mailtoLink = `mailto:golamfaruk204@gmail.com?subject=Shipping%20Information%20Details&body=Name: ${userName}%0APhone: ${userPhone}%0AAddress: ${userAddress}%0AOrder Note: ${initialObj.orderNote}%0ASubTotal Price: ${initialObj.subTotal}%0AShipping Cost: ${initialObj.shippingCharge}%0AGrand Total: ${initialObj.grandTotal}`;
+  const mailtoLink = `mailto:${userEmail}?subject=Shipping%20Information%20Details&body=Name: ${userName}%0APhone: ${userPhone}%0AAddress: ${userAddress}%0AOrder Note: ${initialObj.orderNote}%0ASubTotal Price: ${initialObj.subTotal}%0AShipping Cost: ${initialObj.shippingCharge}%0AGrand Total: ${initialObj.grandTotal}`;
   window.location.href = mailtoLink;
 
-  // generateInvoice();
-  // sendEmail();
   console.log(initialObj);
-}
-
-// Generate Invoice
-// function generateInvoice() {
-//   const doc = new jsPDF();
-//   doc.text("Order Invoice", 20, 20);
-//   doc.text(`Name: ${initialObj.shippingInfo.userName}`, 20, 30);
-//   doc.text(`Phone: ${initialObj.shippingInfo.userPhone}`, 20, 40);
-//   doc.text(`Address: ${initialObj.shippingInfo.userAddress}`, 20, 50);
-//   doc.text(`Order Note: ${initialObj.orderNote}`, 20, 60);
-
-//   let y = 70;
-//   initialObj.items.forEach((item) => {
-//     doc.text(
-//       `Item: ${item.title}, Quantity: ${item.quantity}, Price: ${item.price}`,
-//       20,
-//       y
-//     );
-//     y += 10;
-//   });
-
-//   doc.text(`Subtotal: ${initialObj.subTotal}`, 20, y + 10);
-//   doc.text(`Shipping: ${initialObj.shippingCharge}`, 20, y + 20);
-//   doc.text(`Grand Total: ${initialObj.grandTotal}`, 20, y + 30);
-
-//   doc.save("invoice.pdf");
-// }
-
-// Send Email
-function sendEmail() {
-  // Note: This function requires a backend service to send the email
-  fetch("https://your-backend-service.com/send-email", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      to: "golamfaruk204@gmail.com",
-      subject: "Order Invoice",
-      body: "Please find attached the order invoice.",
-      attachments: [
-        {
-          filename: "invoice.pdf",
-          content: btoa(generateInvoice().output()),
-          encoding: "base64",
-        },
-      ],
-    }),
-  }).then((response) => {
-    if (response.ok) {
-      alert("Invoice sent successfully!");
-    } else {
-      alert("Failed to send the invoice.");
-    }
-  });
 }

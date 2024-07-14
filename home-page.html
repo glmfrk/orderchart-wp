@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>add to card home page</title>
+
+  <!-- css files  -->
+  <link rel="stylesheet" href="./assets/css/bootstrap.min.css">
+  <link rel="stylesheet" href="./assets/css/mainStyle.min.css">
+</head>
+<body>
+
+<!--
+Front-End Design
+Ui Design
+Website: www.cupcom.com.br
+-->
+<link href="https://fonts.googleapis.com/css?family=Rubik&display=swap" rel="stylesheet">
+<script src="https://kit.fontawesome.com/af562a2a63.js" crossorigin="anonymous"></script>
+
+<header>
+  <!-- contact content -->
+  <div class="header-content-top">
+    <div class="content">
+      <span><i class="fas fa-phone-square-alt"></i> (00)0000-0000</span>
+      <span><i class="fas fa-envelope-square"></i>email@email.com.br</span>
+    </div>
+  </div>
+  <!-- / contact content -->
+  <div class="header-content-middle">
+    <!-- logo -->
+    <strong class="logo"><i class="fas fa-heart"></i></strong>
+    <!-- open nav mobile -->
+
+    <!--search -->
+    <label class="open-search" for="open-search">
+      <i class="fas fa-search"></i>
+            <input class="input-open-search" id="open-search" type="checkbox" name="menu" />
+    <div class="search">
+      <button class="button-search"><i class="fas fa-search"></i></button>
+      <input type="text" placeholder="What are you looking for?" class="input-search"/>
+    </div>
+    </label>
+    <!-- // search -->
+    <nav class="nav-content">
+      <!-- nav -->
+      <ul class="nav-content-list">
+        <li class="nav-content-item account-login">
+          <label class="open-menu-login-account" for="open-menu-login-account">
+
+            <input class="input-menu" id="open-menu-login-account" type="checkbox" name="menu" />
+
+            <i class="fas fa-user-circle"></i><span class="login-text">Hello, Sign in <strong>Create Account</strong></span> <span class="item-arrow"></span>
+
+            <!-- submenu -->
+            <ul class="login-list">
+              <li class="login-list-item"><a href="https://www.cupcom.com.br/">My account</a></li>
+              <li class="login-list-item"><a href="https://www.cupcom.com.br/">Create account</a></li>
+              <li class="login-list-item"><a href="https://www.cupcom.com.br/">logout</a></li>
+              </label>
+            </ul>
+        </li>
+        <li class="nav-content-item"><a class="nav-content-link" href="https://www.cupcom.com.br/"><i class="fas fa-heart"></i></a></li>
+
+        <li class="nav-content-item">
+          <a class="nav-content-link" href="./index.html"><i class="fas fa-shopping-cart"></i>
+            <span class="cart-num" id="topActionCartNumber">0</span>
+          </a>
+        </li>
+        <!-- call to action -->
+      </ul>
+    </nav>
+  </div>
+  <!-- nav navigation commerce -->
+  <div class="nav-container">
+    <nav class="all-category-nav">
+      <label class="open-menu-all" for="open-menu-all">
+        <input class="input-menu-all" id="open-menu-all" type="checkbox" name="menu-open" />
+        <span class="all-navigator"><i class="fas fa-bars"></i> <span>All category</span> <i class="fas fa-angle-down"></i>
+          <i class="fas fa-angle-up"></i>
+        </span>
+
+        <ul class="all-category-list">
+          <li class="all-category-list-item"><a href="https://www.cupcom.com.br/" class="all-category-list-link">Smartphones<i class="fas fa-angle-right"></i></a>
+            <div class="category-second-list">
+              <ul class="category-second-list-ul">
+                <li class="category-second-item"><a href="https://www.cupcom.com.br/">Iphone 10</a></li>
+                <li class="category-second-item"><a href="https://www.cupcom.com.br/">Galaxy Note 10</a></li>
+                <li class="category-second-item"><a href="https://www.cupcom.com.br/">Motorola One </a></li>
+                <li class="category-second-item"><a href="https://www.cupcom.com.br/">Galaxy A80 </a></li>
+                <li class="category-second-item"><a href="https://www.cupcom.com.br/">Galaxy M </a></li>
+                <li class="category-second-item"><a href="https://www.cupcom.com.br/">Huaway P30 </a></li>
+              </ul>
+
+              <div class="img-product-menu"><img src="https://i.ibb.co/Vvndkmy/banner.jpg"></div>
+              </div>
+          </li>
+          <li class="all-category-list-item"><a href="https://www.cupcom.com.br/" class="all-category-list-link">Furniture <i class="fas fa-angle-right"></i></a></li>
+          <li class="all-category-list-item"><a href="https://www.cupcom.com.br/" class="all-category-list-link">Toys<i class="fas fa-angle-right"></i></a></li>
+          <li class="all-category-list-item"><a href="https://www.cupcom.com.br/" class="all-category-list-link">Computing<i class="fas fa-angle-right"></i></a></li>
+          <li class="all-category-list-item"><a href="https://www.cupcom.com.br/" class="all-category-list-link">Games<i class="fas fa-angle-right"></i></a></li>
+          <li class="all-category-list-item"><a href="" class="all-category-list-link">Automotive<i class="fas fa-angle-right"></i></a></li>
+
+        </ul>
+      </label>
+
+    </nav>
+    <nav class="featured-category">
+      <ul class="nav-row">
+        <li class="nav-row-list"><a href="https://www.cupcom.com.br/" class="nav-row-list-link">Smartphones</a></li>
+        <li class="nav-row-list"><a href="https://www.cupcom.com.br/" class="nav-row-list-link">furniture</a></li>
+        <li class="nav-row-list"><a href="https://www.cupcom.com.br/" class="nav-row-list-link">Toys</a></li>
+        <li class="nav-row-list"><a href="https://www.cupcom.com.br/" class="nav-row-list-link">Computing</a></li>
+        <li class="nav-row-list"><a href="https://www.cupcom.com.br/" class="nav-row-list-link">Games</a></li>
+        <li class="nav-row-list"><a href="https://www.cupcom.com.br/" class="nav-row-list-link">Automotive</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+
+
+<section class="products_list_wrapper">
+  <div class="container text-center ">
+    <div class="row mx-auto">
+      <div class="col-md-4 mb-md-4">
+        <div class="card border-0 rounded-0 shadow">
+          <img src="https://codingyaar.com/wp-content/uploads/bag-scaled.jpg" class="card-img-top rounded-0" alt="...">
+          <div class="card-body mt-3 mb-3">
+            <div class="row">
+              <div class="col-10">
+                <h4 class="card-title">Product title</h4>
+                <p class="card-text">
+                  <i class="bi bi-star-fill text-warning"></i>
+                  <i class="bi bi-star-fill text-warning"></i>
+                  <i class="bi bi-star-fill text-warning"></i>
+                  <i class="bi bi-star-fill text-warning"></i>
+                  (123)
+                </p>
+              </div>
+              <div class="col-2">
+                <i class="bi bi-bookmark-plus fs-2"></i>
+              </div>
+            </div>
+          </div>
+          <div class="row align-items-center text-center g-0">
+            <div class="col-4">
+              <h5>$129</h5>
+            </div>
+            <div class="col-8">
+             <button type="button" class="btn btn-dark w-100 p-3 rounded-0 text-warning add__cart">ADD TO CART</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-md-4">
+        <div class="card border-0 rounded-0 shadow">
+          <img src="./assets/images/product_01.png" class="card-img-top rounded-0" alt="...">
+          <div class="card-body mt-3 mb-3">
+            <div class="row">
+              <div class="col-10">
+                <h4 class="card-title">Product title</h4>
+                <p class="card-text">
+                  <i class="bi bi-star-fill text-warning"></i>
+                  <i class="bi bi-star-fill text-warning"></i>
+                  <i class="bi bi-star-fill text-warning"></i>
+                  <i class="bi bi-star-fill text-warning"></i>
+                  (123)
+                </p>
+              </div>
+              <div class="col-2">
+                <i class="bi bi-bookmark-plus fs-2"></i>
+              </div>
+            </div>
+          </div>
+          <div class="row align-items-center text-center g-0">
+            <div class="col-4">
+              <h5>$129</h5>
+            </div>
+            <div class="col-8">
+             <button type="button" class="btn btn-dark w-100 p-3 rounded-0 text-warning add__cart">ADD TO CART</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-md-4">
+        <div class="card border-0 rounded-0 shadow">
+          <img src="./assets/images/product_02.png" class="card-img-top rounded-0" alt="...">
+          <div class="card-body mt-3 mb-3">
+            <div class="row">
+              <div class="col-10">
+                <h4 class="card-title">Product title</h4>
+                <p class="card-text">
+                  <i class="bi bi-star-fill text-warning"></i>
+                  <i class="bi bi-star-fill text-warning"></i>
+                  <i class="bi bi-star-fill text-warning"></i>
+                  <i class="bi bi-star-fill text-warning"></i>
+                  (123)
+                </p>
+              </div>
+              <div class="col-2">
+                <i class="bi bi-bookmark-plus fs-2"></i>
+              </div>
+            </div>
+          </div>
+          <div class="row align-items-center text-center g-0">
+            <div class="col-4">
+              <h5>$129</h5>
+            </div>
+            <div class="col-8">
+             <button type="button" class="btn btn-dark w-100 p-3 rounded-0 text-warning add__cart">ADD TO CART</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-md-4">
+        <div class="card border-0 rounded-0 shadow">
+          <img src="./assets/images/product_03.jpg" class="card-img-top rounded-0" alt="...">
+          <div class="card-body mt-3 mb-3">
+            <div class="row">
+              <div class="col-10">
+                <h4 class="card-title">Product title</h4>
+                <p class="card-text">
+                  <i class="bi bi-star-fill text-warning"></i>
+                  <i class="bi bi-star-fill text-warning"></i>
+                  <i class="bi bi-star-fill text-warning"></i>
+                  <i class="bi bi-star-fill text-warning"></i>
+                  (123)
+                </p>
+              </div>
+              <div class="col-2">
+                <i class="bi bi-bookmark-plus fs-2"></i>
+              </div>
+            </div>
+          </div>
+          <div class="row align-items-center text-center g-0">
+            <div class="col-4">
+              <h5>$129</h5>
+            </div>
+            <div class="col-8">
+             <button type="button" class="btn btn-dark w-100 p-3 rounded-0 text-warning add__cart">ADD TO CART</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-md-4">
+        <div class="card border-0 rounded-0 shadow">
+          <img src="./assets/images/product_04.png" class="card-img-top rounded-0" alt="...">
+          <div class="card-body mt-3 mb-3">
+            <div class="row">
+              <div class="col-10">
+                <h4 class="card-title">Product title</h4>
+                <p class="card-text">
+                  <i class="bi bi-star-fill text-warning"></i>
+                  <i class="bi bi-star-fill text-warning"></i>
+                  <i class="bi bi-star-fill text-warning"></i>
+                  <i class="bi bi-star-fill text-warning"></i>
+                  (123)
+                </p>
+              </div>
+              <div class="col-2">
+                <i class="bi bi-bookmark-plus fs-2"></i>
+              </div>
+            </div>
+          </div>
+          <div class="row align-items-center text-center g-0">
+            <div class="col-4">
+              <h5>$129</h5>
+            </div>
+            <div class="col-8">
+             <button type="button" class="btn btn-dark w-100 p-3 rounded-0 text-warning add__cart">ADD TO CART</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-md-4">
+        <div class="card border-0 rounded-0 shadow">
+          <img src="./assets/images/product_05.png" class="card-img-top rounded-0" alt="...">
+          <div class="card-body mt-3 mb-3">
+            <div class="row">
+              <div class="col-10">
+                <h4 class="card-title">Product title</h4>
+                <p class="card-text">
+                  <i class="bi bi-star-fill text-warning"></i>
+                  <i class="bi bi-star-fill text-warning"></i>
+                  <i class="bi bi-star-fill text-warning"></i>
+                  <i class="bi bi-star-fill text-warning"></i>
+                  (123)
+                </p>
+              </div>
+              <div class="col-2">
+                <i class="bi bi-bookmark-plus fs-2"></i>
+              </div>
+            </div>
+          </div>
+          <div class="row align-items-center text-center g-0">
+            <div class="col-4">
+              <h5>$129</h5>
+            </div>
+            <div class="col-8">
+              <button type="button" class="btn btn-dark w-100 p-3 rounded-0 text-warning add__cart">ADD TO CART</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<footer class="footer_part">
+  <div style="display: block; margin: 0 auto; text-align: center; margin-top: 50px">
+    <script src="https://apis.google.com/js/platform.js"></script>
+
+  <div class="g-ytsubscribe" data-channelid="UCpXTlrDWlpN46PKieJ-FcPw" data-layout="full" data-count="hidden"></div>
+  </div>
+
+  <div style="margin: 50px 0; display: flex; align-items: center; justify-content: center; width: 100%">
+
+      <a style="display: block; text-align:  center; color: #555; text-decoration: none; margin-right: 15px; " href="https://www.cupcom.com.br/" target="_blank"><i class="fas fa-home" style="color: #1da1f2; margin-right: 5px;"></i>More compoments: cupcom.com.br</a>
+
+  </div>
+</footer>
+
+<!-- <div class="lzd-nav-cart">
+  <a href="//cart.daraz.com.bd/cart?spm=a2a0e.pdp.header.dcart.6a84714dpJQuCa&amp;scm=1003.4.icms-zebra-100022782-2872099.OTHER_5410630461_2521613" data-spm="dcart" data-spm-anchor-id="a2a0e.pdp.header.dcart">
+<span class="cart-icon">
+<svg width="30" height="30" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" data-spm-anchor-id="a2a0e.pdp.dcart.i0.6a84714dpJQuCa">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M4.51345 5H1.33325V3H6.15306L7.21972 8.33333H30.5315L27.5012 25H8.51345L4.51345 5ZM7.61972 10.3333L10.1531 23H25.832L28.135 10.3333H7.61972Z" fill="white"></path>
+<path d="M11.9999 28C11.9999 28.7364 11.403 29.3333 10.6666 29.3333C9.93021 29.3333 9.33325 28.7364 9.33325 28C9.33325 27.2636 9.93021 26.6667 10.6666 26.6667C11.403 26.6667 11.9999 27.2636 11.9999 28Z" fill="white"></path>
+<path d="M25.3333 29.3333C26.0696 29.3333 26.6666 28.7364 26.6666 28C26.6666 27.2636 26.0696 26.6667 25.3333 26.6667C24.5969 26.6667 23.9999 27.2636 23.9999 28C23.9999 28.7364 24.5969 29.3333 25.3333 29.3333Z" fill="white"></path>
+</svg>
+    </span>
+
+  </a>
+</div> -->
+
+
+  <script src="assets/js/extra.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

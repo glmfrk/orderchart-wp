@@ -3,6 +3,7 @@
 @import "base/rest";
 @import "base/utilities";
 
+@import "components/header";
 @import "components/button";
 @import "components/cupon";
 @import "components/order";
@@ -10,6 +11,8 @@
 @import "components/shifting";
 @import "components/deliveryForm";
 
+// all pages
+@import "pages/homePage.scss";
 /*
 * main style start
 */

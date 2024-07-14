@@ -5,9 +5,22 @@
   .product__table_row {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    gap: 15px;
     padding: 5px 0px;
     margin: 10px 0px;
+    .item_left {
+      flex: 1;
+    }
+    .item_right {
+      flex-basis: 45%;
+      gap: 7%;
+      .close_icon {
+        background: transparent;
+        margin-left: auto;
+        font-size: 24px;
+        color: #8f8f8f;
+      }
+    }
   }
 }
 
@@ -15,7 +28,6 @@
   display: inline-flex;
   align-items: center;
   gap: 20px;
-  flex-basis: 60%;
   .product_demo {
     width: 24px;
     width: 32px;
@@ -52,7 +64,4 @@
     display: inline-block;
     text-align: center;
   }
-}
-.single_item.item_right {
-  flex: 1;
 }
